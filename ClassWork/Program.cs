@@ -10,53 +10,53 @@ class Program
         Console.WriteLine("Введите количество столбцов матрицы:");
         int cols = Convert.ToInt32(Console.ReadLine());
 
-        int[,] matrix = new int[rows, cols];
+        int[,] mass = new int[rows, cols];
 
         Random rand = new Random();
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < cols; j++)
             {
-                matrix[i, j] = rand.Next(100); 
+                mass[i, j] = rand.Next(100); 
             }
         }
 
         Console.WriteLine("Исходная матрица:");
-        PrintMatrix(matrix);
+        Printmass(mass);
 
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        SortColumns(matrix);
+        SortColumns(mass);
 
         stopwatch.Stop();
         TimeSpan sortTime = stopwatch.Elapsed;
 
         Console.WriteLine("\nОтсортированная матрица:");
-        PrintMatrix(matrix);
+        Printmass(mass);
 
         Console.WriteLine($"\nВремя сортировки: {sortTime.TotalMilliseconds} миллисекунд");
     }
 
-    static void PrintMatrix(int[,] matrix)
+    static void Printmass(int[,] mass)
     {
-        int rows = matrix.GetLength(0);
-        int cols = matrix.GetLength(1);
+        int rows = mass.GetLength(0);
+        int cols = mass.GetLength(1);
 
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < cols; j++)
             {
-                Console.Write(matrix[i, j] + "\t");
+                Console.Write(mass[i, j] + "\t");
             }
             Console.WriteLine();
         }
     }
 
-    static void SortColumns(int[,] matrix)
+    static void SortColumns(int[,] mass)
     {
-        int rows = matrix.GetLength(0);
-        int cols = matrix.GetLength(1);
+        int rows = mass.GetLength(0);
+        int cols = mass.GetLength(1);
 
         for (int col = 0; col < cols; col++)
         {
@@ -64,14 +64,14 @@ class Program
             int[] columnValues = new int[rows];
             for (int row = 0; row < rows; row++)
             {
-                columnValues[row] = matrix[row, col];
+                columnValues[row] = mass[row, col];
             }
 
             Array.Sort(columnValues);
 
             for (int row = 0; row < rows; row++)
             {
-                matrix[row, col] = columnValues[row];
+                mass[row, col] = columnValues[row];
             }
         }
     }
